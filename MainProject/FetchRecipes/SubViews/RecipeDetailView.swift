@@ -322,7 +322,7 @@ struct RecipeDetailView: View {
                                 ///Go to Provided URL
                                 let url = URL(string: recipe.sourceURL)!
                                 NavigationLink(destination: WebView(url: url)) {
-                                    Text("Tap to watch")
+                                    Text("Tap to View")
                                         .foregroundStyle(.selection).bold()
                                         .padding(.horizontal,10)
                                         .background(Color.white.opacity(0.5))
@@ -335,7 +335,7 @@ struct RecipeDetailView: View {
                                 if let encodedQuery = recipeQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                                    let url = URL(string: "https://www.google.com/search?q=\(encodedQuery)") {
                                     NavigationLink(destination: WebView(url: url)) {
-                                        Text("Tap to watch")
+                                        Text("Tap to View")
                                             .foregroundStyle(.selection).bold()
                                             .padding(.horizontal,10)
                                             .background(Color.white.opacity(0.5))

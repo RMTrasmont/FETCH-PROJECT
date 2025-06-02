@@ -4,13 +4,17 @@
 //
 //  Created by RMT on 5/16/25.
 //
+//TWO MOCKING TESTS ARE BEING DONE.
+//1. Using Mock API Service to simply create a Mock fetch Service to test the Logic. (MockAPIServices:APIServicesProtocol)
+//2. Using the Real Fetch function but with a Mock URL Session to test the Actual fetching function. (MockURLProtocol: URLProtocol)
+
 import Foundation
 import XCTest
 @testable import FetchRecipes
 
 final class FetchFromAPI_UnitTest: XCTestCase {
 
-    //MARK: - TEST MOCK API SERVICE FETCH
+    //MARK: - TESTING MOCK API SERVICE FETCH
     //TESTING MOCK API SERVICE RETURNING A MOCK RESPONSE (Using *MockAPIService* testing just the logic.)
     func test_FetchRecipes_Succeeds_WithCompleteData() async throws {
         let mockAPIServices:APIServicesProtocol = MockAPIServices()
@@ -70,9 +74,9 @@ final class FetchFromAPI_UnitTest: XCTestCase {
     
     
     
-    //MARK: - TESTING REAL "APIService"(TESTING THE REAL NETWORK BUT RETURNING A MOCK RESPONSE w/ help of *MockURLProtocol*)
+    //MARK: - TESTING REAL "APIService"(TESTING THE REAL NETWORK BUT RETURNING A MOCK RESPONSE w/ help of *MockURLProtocol* below)
     
-    //Simulate a Successful fetch with Complete Data Decoded into our Response Object,Using Real APIService fetchRecipe but MockURresponse
+    //Simulate a Successful fetch with Complete Data Decoded into our Response Object,Using Real APIService fetchRecipe but MockURLresponse
     func test_RealAPIService_With_Complete_MockedResponse() async throws {
         // A mock endpoint
         let testEndpoint = "https://mockapi.com/recipesComplete"
@@ -274,7 +278,7 @@ final class FetchFromAPI_UnitTest: XCTestCase {
     
 }
 
-//MOCK API CLASS
+//MARK: MOCK API FETCH CLASS
 final class MockAPIServices:APIServicesProtocol{
     
     func fetchRecipes(for endPoint: String) async throws -> Response {
@@ -319,7 +323,7 @@ final class MockAPIServices:APIServicesProtocol{
 }
 
 
-//MOCK URL PROTOCOL
+//MARK: MOCK URL SESSION (But Will use Real API Fetch function)
 //Allows Call of Real APIService.fetchRecipe(for:) without* hitting actual network service
 //This Allows the Use of the real API Fetch Call function but using a Mock-URL-Session instead of a Real URLSession.
 final class MockURLProtocol: URLProtocol {
